@@ -1,36 +1,10 @@
-
 import java.util.*;
-import java.util.Stack;
-
-class Elefante{
-   private int Peso;
-   private int ci;
-   private int num;
-
-   public Elefante(int Peso,int ci,int num){
-       this.Peso = Peso;
-       this.ci = ci;
-       this.num = num;
-   }
-
-   public int getPeso(){
-       return Peso;
-   }
-
-   public int getCi(){
-       return ci;
-   }
-
-   public int getNum(){
-       return num;
-   }
-   
-}
 
 public class Main{
 
    ArrayList<Elefante> lista=new ArrayList<>();
-   Stack <> stack = new Stack<>();
+   int[ ] Numero;
+   int campeon;
 
    public void Elefantes(int P,int C, int N) {
        Elefante Elf = new Elefante(P,C,N);
@@ -45,42 +19,39 @@ public class Main{
            return Elf.getNum();
        }else{
            for(int p=0;p<=lista.size()-1;p++){
-               int campeon;
                Elefante Elf=lista.get(p);
-               int n= Elf.getNum();
-               for(int q=0;q<=lista.size()-1;q++){
+               for(int q=p;q<=lista.size()-1;q++){
                    Elefante Elf1=lista.get(q);
-                   int Result1= Elf.getPeso()-Elf.getCi();
-                   int Result2= Elf1.getPeso()-Elf.getCi();
-                   if(Result1<0){Result1=Result1*-1;}
-                   if(Result2<0){Result2=Result2*-1;}
-                   if(Result1 > Result2){
-                       campeon=Result2;
-                       n=Elf1.getNum();
+                   if(Elf.getPeso()<Elf1.getPeso() && Elf.getCi()>Elf1.getCi()){
+                       campeon = Elf.getNum();
+                   }else{
+                       campeon = 0;
                    }
                }
-               stack.puts(n);
+               if(campeon!=0){
+               Numero[p]= campeon;
+               }
            }
 
        }
-       for(int i=0;i<stack.size()-2;i++){
-         return  System.out.println(stack.poop());
+       for(int i=0;i<Numero.length;i++){
+         System.out.println(Numero[i]);
        }
-        return  System.out.println(stack.poop());
+       return Numero[Numero.length];
    }
-
-
-
 
    public void main(String[] args) {
-       String entrada = "";
-       Scanner entradaEscaner = new Scanner (System.in);
-       entrada = entradaEscaner.nextLine ();
-       String [] var = entrada.split(" ");
-       int num=0;
-       for(int i=0; i<=var.length-2;i=i+2){
-         num++;
-         Elefantes(Integer.parseInt(var[i]),Integer.parseInt(var[i+1]),num);
+      @SuppressWarnings("resource")
+	Scanner reader = new Scanner(System.in);
+      int Peso = 0;
+       Peso = 0;
+      int iq = 0;
+      int i = 1;
+     do {			
+      Peso = reader.nextInt();
+      iq   = reader.nextInt();
+      i++;
+      Elefantes(Peso,iq,i);
+     } while (Peso!=0);
+     }
    }
-   }
-}
